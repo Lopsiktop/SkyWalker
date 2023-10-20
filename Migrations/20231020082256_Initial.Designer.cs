@@ -12,7 +12,7 @@ using SkyWalker.Data;
 namespace SkyWalker.Migrations
 {
     [DbContext(typeof(SkyDbContext))]
-    [Migration("20231020062051_Initial")]
+    [Migration("20231020082256_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -33,11 +33,9 @@ namespace SkyWalker.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Longitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
