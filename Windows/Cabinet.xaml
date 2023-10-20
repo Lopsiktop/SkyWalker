@@ -44,6 +44,7 @@
                         </DataGrid.Columns>
                         <DataGrid.ContextMenu>
                             <ContextMenu>
+                                <MenuItem Header="Изменить" Click="UpdateClick"/>
                                 <MenuItem Header="Удалить" Click="DeleteTransportClick"/>
                             </ContextMenu>
                         </DataGrid.ContextMenu>

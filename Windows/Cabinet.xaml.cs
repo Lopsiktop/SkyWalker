@@ -80,4 +80,14 @@ public partial class Cabinet : Window
 
         TransportsData.Items.Remove(transport);
     }
+
+    private void UpdateClick(object sender, RoutedEventArgs e)
+    {
+        Transport? transport = TransportsData.SelectedItem as Transport;
+        if (transport is null)
+            return;
+
+        var edit = new UpdateTransportWindow(transport);
+        edit.ShowDialog();
+    }
 }

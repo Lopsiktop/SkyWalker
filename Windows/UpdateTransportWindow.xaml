@@ -1,0 +1,27 @@
+﻿<Window x:Class="SkyWalker.Windows.UpdateTransportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SkyWalker.Windows"
+        mc:Ignorable="d"
+        Title="Редактировать" Height="450" Width="800" FontSize="17" Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Редактировать" FontSize="22"/>
+            <TextBlock Text="Станция"/>
+            <ComboBox Name="StationsBox" />
+            <TextBlock Text="Номер"/>
+            <TextBox Name="IdentifierBox"/>
+            <TextBlock Text="Модель"/>
+            <TextBox Name="Model"/>
+            <TextBlock Text="Цвет"/>
+            <TextBox Name="Color"/>
+            <TextBlock Text="Цена час"/>
+            <TextBox Name="HourPrice"/>
+            <TextBlock Text="Цена день"/>
+            <TextBox Name="DayPrice"/>
+            <Button Content="Изменить" Margin="0 10 0 0" Click="UpdateClick"/>
+        </StackPanel>
+    </Grid>
+</Window>
