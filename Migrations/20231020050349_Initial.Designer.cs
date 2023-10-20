@@ -11,7 +11,7 @@ using SkyWalker.Data;
 namespace SkyWalker.Migrations
 {
     [DbContext(typeof(SkyDbContext))]
-    [Migration("20231020045432_Initial")]
+    [Migration("20231020050349_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -35,7 +35,7 @@ namespace SkyWalker.Migrations
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
