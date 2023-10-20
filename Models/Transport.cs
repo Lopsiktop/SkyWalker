@@ -4,9 +4,11 @@ public class Transport
 {
     public int Id { get; set; }
 
-    public User Owner { get; set; }
+    public User Owner { get; set; } = null!;
+    public int OwnerId { get; set; }
 
-    public Station Station { get; set; }
+    public Station Station { get; set; } = null!;
+    public int StationId { get; set; }
 
     public string Identifier { get; set; }
 
