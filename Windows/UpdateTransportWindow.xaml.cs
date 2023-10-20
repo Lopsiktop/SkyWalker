@@ -1,6 +1,5 @@
 ﻿using SkyWalker.Data;
 using SkyWalker.Models;
-using System.ComponentModel;
 using System.Windows;
 
 namespace SkyWalker.Windows;
@@ -42,6 +41,7 @@ public partial class UpdateTransportWindow : Window
         context.Update(_transport);
         context.SaveChanges();
 
+        DialogResult = true;
         this.Close();
     }
 

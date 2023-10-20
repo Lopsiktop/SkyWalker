@@ -89,5 +89,12 @@ public partial class Cabinet : Window
 
         var edit = new UpdateTransportWindow(transport);
         edit.ShowDialog();
+
+        if(edit.DialogResult == true)
+        {
+            var index = TransportsData.SelectedIndex;
+            TransportsData.Items.RemoveAt(TransportsData.SelectedIndex);
+            TransportsData.Items.Insert(index, transport);
+        }
     }
 }
