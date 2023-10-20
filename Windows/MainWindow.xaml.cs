@@ -1,5 +1,6 @@
 ﻿using SkyWalker.Data;
 using SkyWalker.Models;
+using SkyWalker.Windows;
 using System.Linq;
 using System.Windows;
 
@@ -19,6 +20,11 @@ public partial class MainWindow : Window
         if (user is not null)
         {
             MessageBox.Show($"Вы успешно вошли в аккаунт {user.Username}");
+
+            Cabinet cab = new Cabinet(user);
+            cab.Show();
+            this.Hide();
+
             return;
         }
 

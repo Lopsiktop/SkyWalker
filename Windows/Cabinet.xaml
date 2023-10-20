@@ -1,0 +1,32 @@
+﻿<Window x:Class="SkyWalker.Windows.Cabinet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SkyWalker.Windows"
+        mc:Ignorable="d"
+        Title="Личный кабинет" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Транспорт">
+                <GroupBox Header="Создать" Width="300">
+                    <StackPanel>
+                        <TextBlock Text="Станция"/>
+                        <ComboBox />
+                        <TextBlock Text="Номер"/>
+                        <TextBox/>
+                        <TextBlock Text="Модель"/>
+                        <TextBox/>
+                        <TextBlock Text="Цвет"/>
+                        <TextBox/>
+                        <TextBlock Text="Цена час"/>
+                        <TextBox/>
+                        <TextBlock Text="Цена день"/>
+                        <TextBox/>
+                        <Button Content="Создать" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </GroupBox>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
