@@ -9,4 +9,9 @@ public class Station
     public decimal Latitude { get; set; }
 
     public decimal Longitude { get; set; }
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }

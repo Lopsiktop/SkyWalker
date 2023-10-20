@@ -19,8 +19,6 @@ public partial class MainWindow : Window
         var user = context.Users.SingleOrDefault(x => x.Username == login && x.Password == password);
         if (user is not null)
         {
-            MessageBox.Show($"Вы успешно вошли в аккаунт {user.Username}");
-
             Cabinet cab = new Cabinet(user);
             cab.Show();
             this.Hide();

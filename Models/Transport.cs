@@ -1,4 +1,6 @@
-﻿namespace SkyWalker.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SkyWalker.Models;
 
 public class Transport
 {

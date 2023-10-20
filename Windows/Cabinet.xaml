@@ -5,27 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkyWalker.Windows"
         mc:Ignorable="d"
-        Title="Личный кабинет" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Личный кабинет" FontSize="17" Height="450" Width="1000" Loaded="Window_Loaded">
     <Grid>
         <TabControl>
             <TabItem Header="Транспорт">
-                <GroupBox Header="Создать" Width="300">
-                    <StackPanel>
-                        <TextBlock Text="Станция"/>
-                        <ComboBox Name="StationsBox" />
-                        <TextBlock Text="Номер"/>
-                        <TextBox/>
-                        <TextBlock Text="Модель"/>
-                        <TextBox/>
-                        <TextBlock Text="Цвет"/>
-                        <TextBox/>
-                        <TextBlock Text="Цена час"/>
-                        <TextBox/>
-                        <TextBlock Text="Цена день"/>
-                        <TextBox/>
-                        <Button Content="Создать" Margin="0 10 0 0" Click="CreateTransportClick"/>
-                    </StackPanel>
-                </GroupBox>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <GroupBox Header="Создать">
+                        <StackPanel>
+                            <TextBlock Text="Станция"/>
+                            <ComboBox Name="StationsBox" />
+                            <TextBlock Text="Номер"/>
+                            <TextBox Name="IdentifierBox"/>
+                            <TextBlock Text="Модель"/>
+                            <TextBox Name="Model"/>
+                            <TextBlock Text="Цвет"/>
+                            <TextBox Name="Color"/>
+                            <TextBlock Text="Цена час"/>
+                            <TextBox Name="HourPrice"/>
+                            <TextBlock Text="Цена день"/>
+                            <TextBox Name="DayPrice"/>
+                            <Button Content="Создать" Margin="0 10 0 0" Click="CreateTransportClick"/>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <DataGrid Grid.Column="1" AlternatingRowBackground="AntiqueWhite"  Name="TransportsData" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Станция" Binding="{Binding Station.Name}"/>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Identifier}"/>
+                            <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                            <DataGridTextColumn Header="Цвет" Binding="{Binding Color}"/>
+                            <DataGridTextColumn Header="Цена час" Binding="{Binding HourPrice}"/>
+                            <DataGridTextColumn Header="Цена день" Binding="{Binding DayPrice}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="DeleteTransportClick"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

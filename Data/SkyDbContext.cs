@@ -10,8 +10,6 @@ public class SkyDbContext : DbContext
     public DbSet<Station> Stations { get; set; }
 
     public DbSet<Transport> Transports { get; set; }
-    
-    public DbSet<Rent> Rents { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -19,29 +17,20 @@ public class SkyDbContext : DbContext
         base.OnConfiguring(optionsBuilder);
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder mb)
     {
-        modelBuilder.Entity<Rent>()
-            .HasOne(x => x.Transport)
-            .WithMany()
-            .HasForeignKey(x => x.TransportId);
-
-        modelBuilder.Entity<Rent>()
-            .HasOne(x => x.Renter)
-            .WithMany()
-            .HasForeignKey(x => x.RenterId)
-            .OnDelete(DeleteBehavior.NoAction);
-
-        modelBuilder.Entity<Transport>()
+        mb.Entity<Transport>()
             .HasOne(x => x.Owner)
             .WithMany()
-            .HasForeignKey(x => x.OwnerId);
+            .HasForeignKey(x => x.OwnerId)
+            .IsRequired();
 
-        modelBuilder.Entity<Transport>()
+        mb.Entity<Transport>()
             .HasOne(x => x.Station)
             .WithMany()
-            .HasForeignKey(x => x.StationId);
+            .HasForeignKey(x => x.StationId)
+            .IsRequired();
 
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(mb);
     }
 }
