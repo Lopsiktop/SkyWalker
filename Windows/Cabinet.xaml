@@ -33,6 +33,8 @@
                         </StackPanel>
                     </GroupBox>
 
+                    <GridSplitter Width="2" Background="Transparent"/>
+                    
                     <DataGrid Grid.Column="1" AlternatingRowBackground="AntiqueWhite"  Name="TransportsData" IsReadOnly="True" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Станция" Binding="{Binding Station.Name}"/>
@@ -88,6 +90,8 @@
                             </DockPanel>
                         </DockPanel>
                     </GroupBox>
+
+                    <GridSplitter Width="2" Background="Transparent"/>
 
                     <GroupBox Grid.Column="1" Header="Мои аренды">
                         <DataGrid IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="AntiqueWhite" Name="MyRentsBox">
