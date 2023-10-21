@@ -60,7 +60,12 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox Header="Аренда">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Аренда" Grid.RowSpan="2">
                         <DockPanel>
                             <TextBlock DockPanel.Dock="Top" Text="Выберите транспорт"/>
                             <Button DockPanel.Dock="Bottom" Content="Арендовать" Margin="0 10 0 0" Click="NewRentClick"/>
@@ -93,8 +98,26 @@
 
                     <GridSplitter Width="2" Background="Transparent"/>
 
-                    <GroupBox Grid.Column="1" Header="Мои аренды">
+                    <GroupBox Grid.Column="1" Header="Мои активные аренды">
                         <DataGrid IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="AntiqueWhite" Name="MyRentsBox">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Ид транспорта" Binding="{Binding TransportId}"/>
+                                <DataGridTextColumn Header="Номер" Binding="{Binding Transport.Identifier}"/>
+                                <DataGridTextColumn Header="Тип аренды" Binding="{Binding RentType}"/>
+                                <DataGridTextColumn Header="Статус" Binding="{Binding Status}"/>
+                                <DataGridTextColumn Header="Цена за ед. времени" Binding="{Binding PriceOfUnit}"/>
+                                <DataGridTextColumn Header="Дата создания" Binding="{Binding CreatedAt}"/>
+                            </DataGrid.Columns>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Завершить"/>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="1" Grid.Column="1" Header="Мои завершенные аренды">
+                        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="AntiqueWhite" Name="MyFinishedRentsBox">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Ид транспорта" Binding="{Binding TransportId}"/>
                                 <DataGridTextColumn Header="Номер" Binding="{Binding Transport.Identifier}"/>
