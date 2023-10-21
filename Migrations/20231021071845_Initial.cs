@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -70,6 +71,47 @@ namespace SkyWalker.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Rents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RenterId = table.Column<int>(type: "int", nullable: false),
+                    TransportId = table.Column<int>(type: "int", nullable: false),
+                    RentType = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    PriceOfUnit = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    FinalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rents_Transports_TransportId",
+                        column: x => x.TransportId,
+                        principalTable: "Transports",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Rents_Users_RenterId",
+                        column: x => x.RenterId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_RenterId",
+                table: "Rents",
+                column: "RenterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_TransportId",
+                table: "Rents",
+                column: "TransportId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Transports_OwnerId",
                 table: "Transports",
@@ -84,6 +126,9 @@ namespace SkyWalker.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Rents");
+
             migrationBuilder.DropTable(
                 name: "Transports");
 

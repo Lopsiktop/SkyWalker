@@ -12,7 +12,7 @@ using SkyWalker.Data;
 namespace SkyWalker.Migrations
 {
     [DbContext(typeof(SkyDbContext))]
-    [Migration("20231020082256_Initial")]
+    [Migration("20231021071845_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,6 +24,47 @@ namespace SkyWalker.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SkyWalker.Models.Rent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("FinalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PriceOfUnit")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("RentType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RenterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransportId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RenterId");
+
+                    b.HasIndex("TransportId");
+
+                    b.ToTable("Rents");
+                });
 
             modelBuilder.Entity("SkyWalker.Models.Station", b =>
                 {
@@ -109,6 +150,25 @@ namespace SkyWalker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SkyWalker.Models.Rent", b =>
+                {
+                    b.HasOne("SkyWalker.Models.User", "Renter")
+                        .WithMany()
+                        .HasForeignKey("RenterId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SkyWalker.Models.Transport", "Transport")
+                        .WithMany()
+                        .HasForeignKey("TransportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Renter");
+
+                    b.Navigation("Transport");
                 });
 
             modelBuilder.Entity("SkyWalker.Models.Transport", b =>

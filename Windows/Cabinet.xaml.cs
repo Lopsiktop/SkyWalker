@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SkyWalker.Data;
+﻿using SkyWalker.Data;
 using SkyWalker.Models;
 using System;
 using System.ComponentModel;
@@ -96,5 +95,10 @@ public partial class Cabinet : Window
             TransportsData.Items.RemoveAt(TransportsData.SelectedIndex);
             TransportsData.Items.Insert(index, transport);
         }
+    }
+
+    private void NewRentClick(object sender, RoutedEventArgs e)
+    {
+
     }
 }

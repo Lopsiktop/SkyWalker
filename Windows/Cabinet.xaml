@@ -51,6 +51,44 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
+            <TabItem Header="Аренда" IsSelected="True">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Header="Аренда">
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Top" Text="Выберите транспорт"/>
+                            <Button DockPanel.Dock="Bottom" Content="Арендовать" Margin="0 10 0 0" Click="NewRentClick"/>
+                            <ComboBox DockPanel.Dock="Bottom" Name="RentTypeBox">
+                                <ComboBoxItem Content="По часам"/>
+                                <ComboBoxItem Content="По дням"/>
+                            </ComboBox>
+                            <TextBlock DockPanel.Dock="Bottom" Text="Тип аренды"/>
+
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel Margin="0 10" DockPanel.Dock="Top">
+                                    <TextBlock DockPanel.Dock="Left" Text="Поиск"/>
+                                    <TextBox Name="SearchBox" Margin="10 0 0 0"/>
+                                </DockPanel>
+                                <DataGrid Name="TransportBox">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Владелец" Binding="{Binding Owner.Name}"/>
+                                        <DataGridTextColumn Header="Станция" Binding="{Binding Station.Name}"/>
+                                        <DataGridTextColumn Header="Адрес" Width="60" Binding="{Binding Station.Address}"/>
+                                        <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                                        <DataGridTextColumn Header="Цвет" Binding="{Binding Color}"/>
+                                        <DataGridTextColumn Header="Цена час" Binding="{Binding HourPrice}"/>
+                                        <DataGridTextColumn Header="Цена день" Binding="{Binding DayPrice}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
