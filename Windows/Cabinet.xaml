@@ -88,6 +88,21 @@
                             </DockPanel>
                         </DockPanel>
                     </GroupBox>
+
+                    <GroupBox Grid.Column="1" Header="Мои аренды">
+                        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="AntiqueWhite" Name="MyRentsBox">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Ид транспорта" Binding="{Binding TransportId}"/>
+                                <DataGridTextColumn Header="Номер" Binding="{Binding Transport.Identifier}"/>
+                                <DataGridTextColumn Header="Тип аренды" Binding="{Binding RentType}"/>
+                                <DataGridTextColumn Header="Статус" Binding="{Binding Status}"/>
+                                <DataGridTextColumn Header="Цена за ед. времени" Binding="{Binding PriceOfUnit}"/>
+                                <DataGridTextColumn Header="Итоговая цена" Binding="{Binding FinalPrice}"/>
+                                <DataGridTextColumn Header="Дата создания" Binding="{Binding CreatedAt}"/>
+                                <DataGridTextColumn Header="Дата завершения" Binding="{Binding EndedAt}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
         </TabControl>

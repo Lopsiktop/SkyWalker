@@ -78,6 +78,12 @@ public partial class Cabinet : Window
         {
             TransportBox.Items.Add(transport);
         }
+
+        var rents = context.Rents.Include(x => x.Transport);
+        foreach (var rent in rents)
+        {
+            MyRentsBox.Items.Add(rent);
+        }
     }
 
     private void DeleteTransportClick(object sender, RoutedEventArgs e)
