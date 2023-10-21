@@ -71,11 +71,12 @@
                             <DockPanel DockPanel.Dock="Top">
                                 <DockPanel Margin="0 10" DockPanel.Dock="Top">
                                     <TextBlock DockPanel.Dock="Left" Text="Поиск"/>
+                                    <Button Click="SearchClick" Width="90" Content="Найти" DockPanel.Dock="Right" Margin="10 0 0 0"/>
                                     <TextBox Name="SearchBox" Margin="10 0 0 0"/>
                                 </DockPanel>
-                                <DataGrid Name="TransportBox">
+                                <DataGrid IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="AntiqueWhite" Name="TransportBox">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Владелец" Binding="{Binding Owner.Name}"/>
+                                        <DataGridTextColumn Header="Владелец" Binding="{Binding Owner.Id}"/>
                                         <DataGridTextColumn Header="Станция" Binding="{Binding Station.Name}"/>
                                         <DataGridTextColumn Header="Адрес" Width="60" Binding="{Binding Station.Address}"/>
                                         <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>

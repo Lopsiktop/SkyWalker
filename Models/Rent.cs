@@ -18,9 +18,9 @@ public class Rent
 
     public decimal PriceOfUnit { get; set; }
 
-    public decimal FinalPrice { get; set; }
+    public decimal? FinalPrice { get; set; } = null;
 
     public DateTime CreatedAt { get; set; }
 
-    public DateTime EndedAt { get; set; }
+    public DateTime? EndedAt { get; set; } = null;
 }

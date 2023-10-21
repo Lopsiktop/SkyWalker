@@ -1,4 +1,5 @@
-﻿using SkyWalker.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SkyWalker.Data;
 using SkyWalker.Models;
 using System;
 using System.ComponentModel;
@@ -51,6 +52,9 @@ public partial class Cabinet : Window
         transport.Station = station;
         TransportsData.Items.Add(transport);
 
+        // rent
+        TransportBox.Items.Add(transport);
+
         MessageBox.Show("Транспорт успешно создан!");
     }
 
@@ -65,6 +69,15 @@ public partial class Cabinet : Window
         var own = context.Transports.Where(x => x.OwnerId == _user.Id);
         foreach (var transport in own)
             TransportsData.Items.Add(transport);
+
+        // rent
+        //todo: пожеланию добавить фио к user
+
+        var transports = context.Transports.Include(x => x.Owner);
+        foreach (var transport in transports)
+        {
+            TransportBox.Items.Add(transport);
+        }
     }
 
     private void DeleteTransportClick(object sender, RoutedEventArgs e)
@@ -98,6 +111,79 @@ public partial class Cabinet : Window
     }
 
     private void NewRentClick(object sender, RoutedEventArgs e)
+    {
+        var rentTypeId = RentTypeBox.SelectedIndex;
+        RentType? type = null;
+
+        if (rentTypeId == 0)
+            type = RentType.Hours;
+        else if (rentTypeId == 1)
+            type = RentType.Days;
+
+        if(type == null)
+        {
+            MessageBox.Show("Выберите тип аренды!");
+            return;
+        }
+
+        var transport = TransportBox.SelectedItem as Transport;
+        if (transport is null)
+        {
+            MessageBox.Show("Выберите транспорт для аренды!");
+            return;
+        }
+
+        var context = new SkyDbContext();
+        var result = context.Rents.Where(x => x.TransportId == transport.Id)
+            .All(x => x.Status == Status.Ended);
+
+        if(result == false)
+        {
+            MessageBox.Show("Этот транспорт уже арендован!");
+            return;
+        }
+
+        if (transport.OwnerId == _user.Id)
+        {
+            MessageBox.Show("Владелец не может арендовать свой же транспорт!");
+            return;
+        }
+
+        if(transport.DayPrice == null && type == RentType.Days) 
+        {
+            MessageBox.Show("Выбранный тип аренды не поддерживается!");
+            return;
+        }
+
+        if(transport.HourPrice == null && type == RentType.Hours)
+        {
+            MessageBox.Show("Выбранный тип аренды не поддерживается!");
+            return;
+        }
+
+        decimal? price = 0;
+
+        if (type == RentType.Days)
+            price = transport.DayPrice;
+        else if (type == RentType.Hours)
+            price = transport.HourPrice;
+
+        var rent = new Rent
+        {
+            RenterId = _user.Id,
+            TransportId = transport.Id,
+            CreatedAt = DateTime.Now,
+            PriceOfUnit = (decimal)price!,
+            RentType = (RentType)type,
+            Status = Status.Started
+        };
+
+        context.Rents.Add(rent);
+        context.SaveChanges();
+        MessageBox.Show("Вы успешно арендовали транспорт!");
+    }
+
+    private void SearchClick(object sender, RoutedEventArgs e)
     {
 
     }
