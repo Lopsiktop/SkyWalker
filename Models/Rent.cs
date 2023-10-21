@@ -7,8 +7,10 @@ public class Rent
     public int Id { get; set; }
 
     public User Renter { get; set; } = null!;
+    public int RenterId { get; set; }
 
     public Transport Transport { get; set; } = null!;
+    public int TransportId { get; set; }
 
     public RentType RentType { get; set; }
 
