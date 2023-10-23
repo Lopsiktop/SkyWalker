@@ -55,8 +55,8 @@ public partial class Cabinet : Window
         var identifier = IdentifierBox.Text;
         var model = Model.Text;
         var color = Color.Text;
-        var hourPrice = decimal.Parse(HourPrice.Text);
-        var dayPrice = decimal.Parse(DayPrice.Text);
+        decimal? hourPrice = string.IsNullOrEmpty(HourPrice.Text) ? null : decimal.Parse(HourPrice.Text);
+        decimal? dayPrice = string.IsNullOrEmpty(DayPrice.Text) ? null : decimal.Parse(DayPrice.Text);
 
      
 
