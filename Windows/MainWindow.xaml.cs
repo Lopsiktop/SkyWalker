@@ -17,7 +17,7 @@ public partial class MainWindow : Window
         string login = SignInLoginBox.Text;
         string password = SignInPasswordBox.Text;
 
-        if (string.IsNullOrEmpty(SignInLoginBox.Text) && string.IsNullOrEmpty(SignInPasswordBox.Text))
+        if (string.IsNullOrWhiteSpace(SignInLoginBox.Text) && string.IsNullOrWhiteSpace(SignInPasswordBox.Text))
         {
             MessageBox.Show($"Пароль и логин должны быть заполнены!");
             return;
@@ -44,7 +44,7 @@ public partial class MainWindow : Window
         string password = SignUpPasswordBox.Text;
 
 
-        if (string.IsNullOrEmpty(SignInLoginBox.Text) && string.IsNullOrEmpty(SignInPasswordBox.Text))
+        if (string.IsNullOrWhiteSpace(SignUpLoginBox.Text) && string.IsNullOrWhiteSpace(SignUpPasswordBox.Text))
         {
             MessageBox.Show($"Пароль и логин должны быть заполнены!");
             return;

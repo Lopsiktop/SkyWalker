@@ -27,14 +27,38 @@ public partial class Cabinet : Window
 
     private void CreateTransportClick(object sender, RoutedEventArgs e)
     {
+        var StationIsNull = StationsBox.SelectedItem == null;
+
+        if (StationIsNull)
+        {
+            MessageBox.Show("Выберите станцию!");
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(IdentifierBox.Text))
+        {
+            MessageBox.Show($"Введите номер транспорта!");
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(Model.Text))
+        {
+            MessageBox.Show($"Введите модель транспорта!");
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(Color.Text))
+        {
+            MessageBox.Show($"Введите цвет транспорта!");
+            return;
+        }
+
+        
+
         var identifier = IdentifierBox.Text;
         var model = Model.Text;
         var color = Color.Text;
         var hourPrice = decimal.Parse(HourPrice.Text);
         var dayPrice = decimal.Parse(DayPrice.Text);
 
-    
-        
+     
 
         var station = StationsBox.SelectedItem as Station;
 
