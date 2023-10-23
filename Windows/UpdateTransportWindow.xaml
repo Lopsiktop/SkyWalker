@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkyWalker.Windows"
         mc:Ignorable="d"
-        Title="Редактировать" Height="450" Width="800" FontSize="17" Loaded="Window_Loaded">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Редактировать" Height="450" Width="450" FontSize="17" Loaded="Window_Loaded" Background="LightBlue">
     <Grid>
         <StackPanel Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Редактировать" FontSize="22"/>
