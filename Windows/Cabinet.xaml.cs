@@ -50,15 +50,11 @@ public partial class Cabinet : Window
             return;
         }
 
-        
-
         var identifier = IdentifierBox.Text;
         var model = Model.Text;
         var color = Color.Text;
         decimal? hourPrice = string.IsNullOrEmpty(HourPrice.Text) ? null : decimal.Parse(HourPrice.Text);
         decimal? dayPrice = string.IsNullOrEmpty(DayPrice.Text) ? null : decimal.Parse(DayPrice.Text);
-
-     
 
         var station = StationsBox.SelectedItem as Station;
 
@@ -72,11 +68,6 @@ public partial class Cabinet : Window
             HourPrice = hourPrice,
             DayPrice = dayPrice
         };
-
-        if(transport.Owner == null)
-        {
-            MessageBox.Show("");
-        }
 
         var context = new SkyDbContext();
         context.Transports.Add(transport);
