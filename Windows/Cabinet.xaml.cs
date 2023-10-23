@@ -2,6 +2,7 @@
 using SkyWalker.Data;
 using SkyWalker.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -202,7 +203,37 @@ public partial class Cabinet : Window
 
     private void SearchClick(object sender, RoutedEventArgs e)
     {
+        var filter = SearchBox.Text;
 
+        if (string.IsNullOrEmpty(filter))
+            return;
+
+        List<Transport> result = new List<Transport>();
+
+        foreach (Transport item in TransportBox.Items)
+        {
+            if (item.Id.ToString() == filter)
+            {
+                result.Add(item);
+                break;
+            }
+
+            if(item.Identifier.ToLower() == filter.ToLower())
+            {
+                result.Add(item);
+                break;
+            }
+
+            if (item.Model.ToLower().Contains(filter.ToLower()))
+                result.Add(item);
+        }
+
+        TransportBox.Items.Clear();
+
+        foreach (var item in result)
+        {
+            TransportBox.Items.Add(item);
+        }
     }
 
     private void EndRentClick(object sender, RoutedEventArgs e)
@@ -229,5 +260,17 @@ public partial class Cabinet : Window
 
         MyRentsBox.Items.Remove(rent);
         MyFinishedRentsBox.Items.Add(rent);
+    }
+
+    private void UpdateTransportsClick(object sender, RoutedEventArgs e)
+    {
+        var context = new SkyDbContext();
+
+        TransportBox.Items.Clear();
+        var transports = context.Transports.Include(x => x.Owner).Include(x => x.Station);
+        foreach (var transport in transports)
+        {
+            TransportBox.Items.Add(transport);
+        }
     }
 }
