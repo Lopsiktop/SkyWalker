@@ -1,4 +1,5 @@
-﻿using SkyWalker.Data;
+﻿using Microsoft.IdentityModel.Tokens;
+using SkyWalker.Data;
 using SkyWalker.Models;
 using SkyWalker.Windows;
 using System.Linq;
@@ -12,8 +13,15 @@ public partial class MainWindow : Window
 
     private void AuthClick(object sender, RoutedEventArgs e)
     {
+
         string login = SignInLoginBox.Text;
         string password = SignInPasswordBox.Text;
+
+        if (string.IsNullOrWhiteSpace(SignInLoginBox.Text) && string.IsNullOrWhiteSpace(SignInPasswordBox.Text))
+        {
+            MessageBox.Show($"Пароль и логин должны быть заполнены!");
+            return;
+        }
 
         var context = new SkyDbContext();
         var user = context.Users.SingleOrDefault(x => x.Username == login && x.Password == password);
@@ -25,6 +33,7 @@ public partial class MainWindow : Window
 
             return;
         }
+       
 
         MessageBox.Show($"Логин или пароль неверные!");
     }
@@ -33,6 +42,13 @@ public partial class MainWindow : Window
     {
         string login = SignUpLoginBox.Text;
         string password = SignUpPasswordBox.Text;
+
+
+        if (string.IsNullOrWhiteSpace(SignUpLoginBox.Text) && string.IsNullOrWhiteSpace(SignUpPasswordBox.Text))
+        {
+            MessageBox.Show($"Пароль и логин должны быть заполнены!");
+            return;
+        }
 
         var user = new User 
         {
@@ -43,5 +59,7 @@ public partial class MainWindow : Window
         var context = new SkyDbContext();
         context.Users.Add(user);
         context.SaveChanges();
+
+
     }
 }
