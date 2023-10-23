@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkyWalker.Windows"
         mc:Ignorable="d"
-        Title="Личный кабинет" FontSize="17" Height="450" Width="1000" Loaded="Window_Loaded">
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Личный кабинет" FontSize="17" Height="600" Width="1200" Loaded="Window_Loaded">
     <Grid>
         <TabControl>
-            <TabItem Header="Транспорт">
+            <TabItem Margin="0 0 0 10" Header="Транспорт">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -17,18 +18,12 @@
                     
                     <GroupBox Header="Создать">
                         <StackPanel>
-                            <TextBlock Text="Станция"/>
-                            <ComboBox Name="StationsBox" />
-                            <TextBlock Text="Номер"/>
-                            <TextBox Name="IdentifierBox"/>
-                            <TextBlock Text="Модель"/>
-                            <TextBox Name="Model"/>
-                            <TextBlock Text="Цвет"/>
-                            <TextBox Name="Color"/>
-                            <TextBlock Text="Цена час"/>
-                            <TextBox Name="HourPrice"/>
-                            <TextBlock Text="Цена день"/>
-                            <TextBox Name="DayPrice"/>
+                            <ComboBox md:HintAssist.Hint="Станция" Margin=" 0 0 0 10" Name="StationsBox"/>
+                            <TextBox md:HintAssist.Hint="Номер" Margin=" 0 0 0 10" Name="IdentifierBox"/>
+                            <TextBox md:HintAssist.Hint="Модель" Margin=" 0 0 0 10" Name="Model"/>
+                            <TextBox md:HintAssist.Hint="Цвет" Margin=" 0 0 0 10" Name="Color"/>
+                            <TextBox md:HintAssist.Hint="Цена час" Margin=" 0 0 0 10" Name="HourPrice"/>
+                            <TextBox md:HintAssist.Hint="Цена день" Margin=" 0 0 0 10" Name="DayPrice"/>
                             <Button Content="Создать" Margin="0 10 0 0" Click="CreateTransportClick"/>
                         </StackPanel>
                     </GroupBox>
@@ -53,7 +48,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Аренда">
+            <TabItem Margin="0 0 0 10" Header="Аренда">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -67,20 +62,17 @@
 
                     <GroupBox Header="Аренда" Grid.RowSpan="2">
                         <DockPanel>
-                            <TextBlock DockPanel.Dock="Top" Text="Выберите транспорт"/>
                             <Button DockPanel.Dock="Bottom" Content="Арендовать" Margin="0 10 0 0" Click="NewRentClick"/>
-                            <ComboBox DockPanel.Dock="Bottom" Name="RentTypeBox">
+                            <ComboBox md:HintAssist.Hint="Тип аренды" Margin="0 10 0 0" DockPanel.Dock="Bottom" Name="RentTypeBox">
                                 <ComboBoxItem Content="По часам"/>
                                 <ComboBoxItem Content="По дням"/>
                             </ComboBox>
-                            <TextBlock DockPanel.Dock="Bottom" Text="Тип аренды"/>
 
                             <DockPanel DockPanel.Dock="Top">
                                 <DockPanel Margin="0 10" DockPanel.Dock="Top">
-                                    <TextBlock DockPanel.Dock="Left" Text="Поиск"/>
-                                    <Button Click="UpdateTransportsClick" Width="90" Content="Обновить" DockPanel.Dock="Right" Margin="10 0 0 0"/>
+                                    <Button Click="UpdateTransportsClick" Width="100" Content="Обновить" DockPanel.Dock="Right" Margin="10 0 0 0"/>
                                     <Button Click="SearchClick" Width="90" Content="Найти" DockPanel.Dock="Right" Margin="10 0 0 0"/>
-                                    <TextBox Name="SearchBox" Margin="10 0 0 0"/>
+                                    <TextBox Name="SearchBox" md:HintAssist.Hint="Поиск"/>
                                 </DockPanel>
                                 <DataGrid IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="AntiqueWhite" Name="TransportBox">
                                     <DataGrid.Columns>

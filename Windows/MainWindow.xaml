@@ -5,26 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkyWalker"
         mc:Ignorable="d"
-        Title="Авторизация" FontSize="17" Height="450" Width="800">
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Авторизация" FontSize="17" Height="350" Width="500">
     <Grid>
         <TabControl>
             <TabItem Header="Авторизация">
                 <StackPanel Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="Авторизация" FontSize="25"/>
-                    <TextBlock Text="Логин"/>
-                    <TextBox Name="SignInLoginBox"/>
-                    <TextBlock Text="Пароль"/>
-                    <TextBox Name="SignInPasswordBox"/>
+                    <TextBlock Text="Авторизация" FontSize="25" Margin="0 0 0 10"/>
+                    <TextBox md:HintAssist.Hint="Логин" Name="SignInLoginBox"/>
+                    <TextBox md:HintAssist.Hint="Пароль" Name="SignInPasswordBox" Margin="0 10 0 5"/>
                     <Button Click="AuthClick" Content="Войти" Margin="0 10 0 0"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Регистрация">
                 <StackPanel Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="Регистрация" FontSize="25"/>
-                    <TextBlock Text="Логин"/>
-                    <TextBox Name="SignUpLoginBox"/>
-                    <TextBlock Text="Пароль"/>
-                    <TextBox Name="SignUpPasswordBox"/>
+                    <TextBlock Text="Регистрация" FontSize="25" Margin="0 0 0 10"/>
+                    <TextBox  md:HintAssist.Hint="Логин" Name="SignUpLoginBox"/>
+                    <TextBox  md:HintAssist.Hint="Пароль" Name="SignUpPasswordBox" Margin="0 10 0 5"/>
                     <Button Click="RegisterClick" Content="Зарегистрироваться" Margin="0 10 0 0"/>
                 </StackPanel>
             </TabItem>
