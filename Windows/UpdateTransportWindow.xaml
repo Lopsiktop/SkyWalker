@@ -5,23 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkyWalker.Windows"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Редактировать" Height="450" Width="450" FontSize="17" Loaded="Window_Loaded" Background="LightBlue">
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Редактировать" Height="450" Width="450" FontSize="17" Loaded="Window_Loaded">
     <Grid>
         <StackPanel Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Редактировать" FontSize="22"/>
-            <TextBlock Text="Станция"/>
-            <ComboBox Name="StationsBox" />
-            <TextBlock Text="Номер"/>
-            <TextBox Name="IdentifierBox"/>
-            <TextBlock Text="Модель"/>
-            <TextBox Name="Model"/>
-            <TextBlock Text="Цвет"/>
-            <TextBox Name="Color"/>
-            <TextBlock Text="Цена час"/>
-            <TextBox Name="HourPrice"/>
-            <TextBlock Text="Цена день"/>
-            <TextBox Name="DayPrice"/>
+            <ComboBox md:HintAssist.HelperText="Станция" md:HintAssist.HelperTextFontSize="13" Margin="0 0 0 20" Name="StationsBox" />
+            <TextBox md:HintAssist.HelperText="Номер" md:HintAssist.HelperTextFontSize="13" Margin="0 0 0 20" Name="IdentifierBox"/>
+            <TextBox md:HintAssist.HelperText="Модель" md:HintAssist.HelperTextFontSize="13" Margin="0 0 0 20" Name="Model"/>
+            <TextBox md:HintAssist.HelperText="Цвет" md:HintAssist.HelperTextFontSize="13" Margin="0 0 0 20" Name="Color"/>
+            <TextBox md:HintAssist.HelperText="Цена час" md:HintAssist.HelperTextFontSize="13" Margin="0 0 0 20" Name="HourPrice"/>
+            <TextBox md:HintAssist.HelperText="Цена день" md:HintAssist.HelperTextFontSize="13" Margin="0 0 0 20" Name="DayPrice"/>
             <Button Content="Изменить" Margin="0 10 0 0" Click="UpdateClick"/>
         </StackPanel>
     </Grid>

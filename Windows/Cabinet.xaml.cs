@@ -22,7 +22,7 @@ public partial class Cabinet : Window
 
     protected override void OnClosing(CancelEventArgs e)
     {
-        Environment.Exit(0);
+        Application.Current.Shutdown();
     }
 
     private void CreateTransportClick(object sender, RoutedEventArgs e)
