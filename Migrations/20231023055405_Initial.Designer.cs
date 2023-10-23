@@ -12,8 +12,8 @@ using SkyWalker.Data;
 namespace SkyWalker.Migrations
 {
     [DbContext(typeof(SkyDbContext))]
-    [Migration("20231021080651_InitialRent")]
-    partial class InitialRent
+    [Migration("20231023055405_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

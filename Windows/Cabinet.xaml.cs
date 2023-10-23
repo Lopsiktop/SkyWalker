@@ -49,6 +49,7 @@ public partial class Cabinet : Window
         context.Transports.Add(transport);
         context.SaveChanges();
 
+        transport.Owner = _user;
         transport.Station = station;
         TransportsData.Items.Add(transport);
 
@@ -192,11 +193,41 @@ public partial class Cabinet : Window
 
         context.Rents.Add(rent);
         context.SaveChanges();
+        rent.Transport = transport;
+
+        MyRentsBox.Items.Add(rent);
+
         MessageBox.Show("Вы успешно арендовали транспорт!");
     }
 
     private void SearchClick(object sender, RoutedEventArgs e)
     {
 
+    }
+
+    private void EndRentClick(object sender, RoutedEventArgs e)
+    {
+        Rent rent = MyRentsBox.SelectedItem as Rent;
+        rent.Status = Status.Ended;
+        rent.EndedAt = DateTime.Now;
+
+        TimeSpan? duration = rent.EndedAt - rent.CreatedAt;
+
+        double? amount = null;
+        if (rent.RentType == RentType.Days)
+            amount = duration.Value.TotalDays;
+        else if(rent.RentType == RentType.Hours)
+            amount = duration.Value.TotalHours;
+
+        amount = Math.Ceiling((double)amount);
+
+        rent.FinalPrice = (decimal)amount * rent.PriceOfUnit;
+
+        var context = new SkyDbContext();
+        context.Rents.Update(rent);
+        context.SaveChanges();
+
+        MyRentsBox.Items.Remove(rent);
+        MyFinishedRentsBox.Items.Add(rent);
     }
 }

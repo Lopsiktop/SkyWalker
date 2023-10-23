@@ -53,7 +53,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Аренда" IsSelected="True">
+            <TabItem Header="Аренда">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -83,7 +83,9 @@
                                 </DockPanel>
                                 <DataGrid IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="AntiqueWhite" Name="TransportBox">
                                     <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Транспорт Id" Binding="{Binding Id}"/>
                                         <DataGridTextColumn Header="Владелец" Binding="{Binding Owner.Id}"/>
+                                        <DataGridTextColumn Header="Номер" Binding="{Binding Identifier}"/>
                                         <DataGridTextColumn Header="Станция" Binding="{Binding Station.Name}"/>
                                         <DataGridTextColumn Header="Адрес" Width="60" Binding="{Binding Station.Address}"/>
                                         <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
@@ -110,7 +112,7 @@
                             </DataGrid.Columns>
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Завершить"/>
+                                    <MenuItem Header="Завершить" Click="EndRentClick"/>
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
                         </DataGrid>
