@@ -33,6 +33,9 @@ public partial class Cabinet : Window
         var hourPrice = decimal.Parse(HourPrice.Text);
         var dayPrice = decimal.Parse(DayPrice.Text);
 
+    
+        
+
         var station = StationsBox.SelectedItem as Station;
 
         var transport = new Transport
@@ -46,6 +49,11 @@ public partial class Cabinet : Window
             DayPrice = dayPrice
         };
 
+        if(transport.Owner == null)
+        {
+            MessageBox.Show("");
+        }
+
         var context = new SkyDbContext();
         context.Transports.Add(transport);
         context.SaveChanges();
@@ -58,6 +66,10 @@ public partial class Cabinet : Window
         TransportBox.Items.Add(transport);
 
         MessageBox.Show("Транспорт успешно создан!");
+
+
+
+
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -126,6 +138,15 @@ public partial class Cabinet : Window
 
     private void NewRentClick(object sender, RoutedEventArgs e)
     {
+        var transportIsNull = TransportBox.SelectedItem == null;
+
+        if(transportIsNull)
+        {
+            MessageBox.Show("Вы не выбрали транспорт!");
+            return;
+        }   
+           
+
         var rentTypeId = RentTypeBox.SelectedIndex;
         RentType? type = null;
 
@@ -238,6 +259,15 @@ public partial class Cabinet : Window
 
     private void EndRentClick(object sender, RoutedEventArgs e)
     {
+
+        var MyRentsBoxIsNull = MyRentsBox.SelectedItem == null;
+
+        if (MyRentsBoxIsNull)
+        {
+            MessageBox.Show("Вы не выбрали транспорт!");
+            return;
+        }
+
         Rent rent = MyRentsBox.SelectedItem as Rent;
         rent.Status = Status.Ended;
         rent.EndedAt = DateTime.Now;
